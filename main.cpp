@@ -120,9 +120,9 @@ int main(int argc, char* argv[])
 
     //double t_r = getTickCount();
 
-    //Initialize OCR engine (we initialize 10 instances in order to work several recognitions in parallel)
+    //Initialize OCR engine (we initialize 4 instances in order to work several recognitions in parallel)
     cout << "Initializing OCR engines ..." << endl;
-    int num_ocrs = 10;
+    int num_ocrs = 4;
     vector< Ptr<OCRTesseract> > ocrs;
     for (int o=0; o<num_ocrs; o++)
     {
@@ -221,7 +221,7 @@ int main(int argc, char* argv[])
         }
         case 1:
         {
-            erGrouping(frame, channels, regions, nm_region_groups, nm_boxes, ERGROUPING_ORIENTATION_ANY, "./trained_classifier_erGrouping.xml", 0.5);
+            erGrouping(frame, channels, regions, nm_region_groups, nm_boxes, ERGROUPING_ORIENTATION_ANY, std::string(OCR_RESOURCES_PATH)+std::string("trained_classifier_erGrouping.xml"), 0.5);
             break;
         }
         }
