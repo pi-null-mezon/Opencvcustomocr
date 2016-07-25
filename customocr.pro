@@ -12,5 +12,7 @@ TEMPLATE = app
 SOURCES += main.cpp
 
 include( opencv.pri )
+include( tesseract.pri )
 
 DEFINES += OCR_RESOURCES_PATH=\\\"C:/Programming/customocr/Resources/\\\"
+
