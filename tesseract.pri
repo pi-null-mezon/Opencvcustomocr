@@ -7,9 +7,7 @@ INCLUDEPATH += $${TESSERACT_PATH}/include
 LIBS += -L$${TESSERACT_PATH}/lib
 
 LIBS += -lliblept168 \
-        -lliblept168d \
-        -llibtesseract302 \
-        -llibtesseract302d
+        -llibtesseract302
 
     message(Tesseract library will be linked to project)
 }
