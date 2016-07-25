@@ -29,6 +29,7 @@
 
 # Paths
 *.pro.user*
+*.pro.user
 /Install
 /build
 /Build
