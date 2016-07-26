@@ -5,3 +5,4 @@ CONFIG -= app_bundle
 SOURCES += main.cpp
 
 include( C:/Programming/customocr/tesseract.pri )
+include( C:/Programming/customocr/opencv.pri )

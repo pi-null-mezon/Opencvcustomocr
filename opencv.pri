@@ -38,6 +38,7 @@ LIBS += -l$$qtLibraryName(opencv_core$${OPENCV_VERSION}) \
         -l$$qtLibraryName(opencv_imgproc$${OPENCV_VERSION}) \
         -l$$qtLibraryName(opencv_objdetect$${OPENCV_VERSION}) \
         -l$$qtLibraryName(opencv_videoio$${OPENCV_VERSION}) \
+        -l$$qtLibraryName(opencv_imgcodecs$${OPENCV_VERSION}) \
         -l$$qtLibraryName(opencv_text$${OPENCV_VERSION}) \
         -l$$qtLibraryName(opencv_features2d$${OPENCV_VERSION})
 
