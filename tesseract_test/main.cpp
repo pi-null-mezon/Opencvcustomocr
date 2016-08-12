@@ -62,13 +62,16 @@ int main(int argc, char *argv[]){
 
     std::wcout << QString("Текст:\n").toStdWString();
     std::wcout << qprocessMat(&api, _mat).toStdWString() << std::endl;
+    api.End();
     ------------------------------------------------------------*/
 
-    std::cout << "File name: " ;
+    std::cout << "File name: ";
     char image[] = "C:/OCR/passrus1.jpg";
     cv::Mat _mat = cv::imread(image);
+    std::cout << image << "\n--------------------------\n" ;
     std::wcout << QString("Текст:\n").toStdWString();
-    std::wcout << getUTF8Text(_mat).toStdWString() << std::endl;
+    std::wcout << getUTF8Text(_mat,"rus", tesseract::PageSegMode::PSM_AUTO).toStdWString() << std::endl;
+    std::cout<< "\n--------------------------\n";
 
     return 0;
 }
@@ -109,6 +112,20 @@ QString getUTF8Text(const cv::Mat &img, const char *langcode, tesseract::PageSeg
             cv::cvtColor(img, _mat, CV_BGRA2RGBA);
             break;
     }
-    _tesseract.SetImage(_mat.data, _mat.cols, _mat.rows, 4, 4*_mat.cols);
-    return QString(_tesseract.GetUTF8Text());
+    _tesseract.SetImage(_mat.data, _mat.cols, _mat.rows, 4, 4*_mat.cols);    
+    QString qtstr(_tesseract.GetUTF8Text());
+
+    tesseract::ResultIterator* ri = _tesseract.GetIterator();
+    tesseract::PageIteratorLevel level = tesseract::RIL_WORD;
+    if (ri != 0) {
+        do {
+            const char* word = ri->GetUTF8Text(level);
+            float conf = ri->Confidence(level);
+            printf("\nword: '%s';  \tconf: %.2f;",
+                   QString(word).toLocal8Bit().constData(), conf);
+            //delete[] word;
+        } while (ri->Next(level));
+    }
+
+    return qtstr;
 }
